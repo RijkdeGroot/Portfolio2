@@ -1,0 +1,1256 @@
+/* ==========================================================================
+   RIJK DE GROOT - PORTFOLIO DESIGN SYSTEM
+   Typography: Andada Pro (Variable & Static TTF)
+   Theme: Architectural Blueprint (Cyan / Indigo / Drafting White)
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Andada Pro';
+  src: url('../fonts/AndadaPro-VariableFont_wght.ttf') format('truetype-variations'),
+       url('../fonts/static/AndadaPro-Regular.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Andada Pro';
+  src: url('../fonts/AndadaPro-Italic-VariableFont_wght.ttf') format('truetype-variations'),
+       url('../fonts/static/AndadaPro-Italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Blueprint Core Palette */
+  --bg-main: #0c335e;
+  --bg-card: #082447;
+  --bg-subtle: #0f3d73;
+  --bg-dark: #051830;
+  --text-main: #ffffff;
+  --text-muted: #badeff;
+  --text-light: #72aee6;
+  --accent: #38bdf8;
+  --accent-hover: #7dd3fc;
+  --accent-soft: rgba(56, 189, 248, 0.16);
+  --border-color: #ffffff;
+  --border-light: rgba(255, 255, 255, 0.45);
+  --border-subtle: rgba(255, 255, 255, 0.22);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-sketch: 3px 3px 0px rgba(3, 14, 28, 0.9);
+  --shadow-sketch-hover: 5px 5px 0px rgba(3, 14, 28, 0.95);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-pill: 999px;
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --font-serif: 'Andada Pro', Georgia, serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --container-max: 1180px;
+}
+
+/* Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-serif);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* Blueprint Dual-Layer Grid */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+  background-attachment: fixed;
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Container */
+.site-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ==========================================================================
+   HEADER & NAVIGATION (Matches Wireframe Top Bar)
+   ========================================================================== */
+.site-header {
+  padding: 1.75rem 0 1.25rem;
+  border-bottom: 2px solid var(--border-color);
+  background-color: rgba(9, 36, 70, 0.92);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Wireframe "HOME" box button */
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.4rem;
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #0b2e59;
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-sketch);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.home-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-sketch-hover);
+  background-color: var(--accent);
+  color: var(--bg-dark);
+}
+
+.home-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* Header Nav Menu */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.35rem 0.6rem;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+  color: var(--text-muted);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #ffffff;
+  border-bottom-color: var(--accent);
+}
+
+/* Wireframe "I'M LOOKING FOR..." Search Box */
+.search-wrapper {
+  position: relative;
+  min-width: 260px;
+}
+
+.search-input-box {
+  display: flex;
+  align-items: center;
+  background-color: #071f3d;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.9rem 0.35rem 1.1rem;
+  box-shadow: var(--shadow-sketch);
+  transition: all var(--transition-fast);
+}
+
+.search-input-box:focus-within {
+  box-shadow: 3px 3px 0px var(--accent);
+  border-color: var(--accent);
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: #ffffff;
+  width: 100%;
+}
+
+.search-input::placeholder {
+  color: var(--text-light);
+  font-style: italic;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.search-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  transition: color var(--transition-fast);
+}
+
+.search-icon-btn:hover {
+  color: #ffffff;
+}
+
+/* Live Search Results Dropdown */
+.search-results-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 320px;
+  background-color: #072242;
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-sketch-hover);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  display: none;
+  z-index: 200;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.search-results-dropdown.show {
+  display: block;
+}
+
+.search-result-item {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  display: block;
+  transition: background var(--transition-fast);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background-color: var(--bg-subtle);
+}
+
+.search-result-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.search-result-category {
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.no-results {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding: 0.75rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   HERO SECTION (Matches Wireframe Layout)
+   Left: "RIJK DE GROOT", Taglines & "SHOW ME SOMETHING AT RANDOM"
+   Right: Portrait Framed Photo
+   ========================================================================== */
+.hero-section {
+  padding: 4rem 0 3.5rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.hero-title {
+  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  position: relative;
+  display: inline-block;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+/* The Wireframe Subtitle Box */
+.wireframe-taglines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border-left: 3px dashed var(--accent);
+  padding-left: 1.5rem;
+}
+
+.tagline-item {
+  font-size: clamp(1.4rem, 2.8vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.15;
+}
+
+.tagline-ampersand {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+  line-height: 1;
+}
+
+.tagline-desc {
+  margin-top: 0.5rem;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+/* Wireframe "SHOW ME SOMETHING AT RANDOM" Button */
+.btn-random {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.8rem;
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #0b2e59;
+  border: 2.5px solid var(--border-color);
+  box-shadow: var(--shadow-sketch);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all var(--transition-fast);
+  margin-top: 0.5rem;
+}
+
+.btn-random:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-sketch-hover);
+  background-color: var(--accent);
+  color: var(--bg-dark);
+}
+
+.btn-random:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.btn-random-icon {
+  display: inline-block;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--accent);
+  transition: transform 0.4s ease;
+}
+
+.btn-random:hover .btn-random-icon {
+  color: var(--bg-dark);
+  transform: rotate(180deg) scale(1.15);
+}
+
+/* Hero Portrait Photo Frame (Matches Wireframe Double Frame) */
+.hero-portrait-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.portrait-frame {
+  position: relative;
+  background-color: #072242;
+  padding: 14px;
+  border: 2.5px solid var(--border-color);
+  box-shadow: 7px 7px 0px rgba(3, 14, 28, 0.95);
+  border-radius: var(--radius-sm);
+  max-width: 380px;
+  width: 100%;
+}
+
+.portrait-frame::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 1px dashed var(--border-light);
+  pointer-events: none;
+}
+
+.portrait-img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border: 1.5px solid var(--border-color);
+  filter: contrast(1.04) brightness(0.98);
+}
+
+.portrait-caption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+/* ==========================================================================
+   SECTION: "MY PROJECTS ↓" (Matches Wireframe Section)
+   ========================================================================== */
+.projects-section {
+  padding: 4rem 0;
+  border-top: 2px solid var(--border-color);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 3px solid var(--border-color);
+  padding-bottom: 0.25rem;
+}
+
+.section-arrow {
+  color: var(--accent);
+  display: inline-block;
+  animation: bounceDown 2s infinite ease-in-out;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* Wireframe "SEE ALL" Button */
+.btn-see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #0b2e59;
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-sketch);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-see-all:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-sketch-hover);
+  background-color: var(--accent);
+  color: var(--bg-dark);
+}
+
+/* Project Cards Grid (3 Cards as shown in wireframe) */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-sketch);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sketch-hover);
+  border-color: var(--accent);
+}
+
+.project-thumb-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: #071f3a;
+  border-bottom: 2px solid var(--border-color);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-svg-graphic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-embed {
+  border: 0;
+  background-color: #ffffff;
+}
+
+.project-card:hover .project-svg-graphic {
+  transform: scale(1.04);
+}
+
+/* Wireframe cross watermark in thumbnail */
+.thumb-overlay-mark {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background-color: rgba(7, 31, 61, 0.9);
+  border: 1.5px solid var(--border-color);
+  border-radius: 0;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.project-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.75rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.project-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: 0;
+  color: var(--text-muted);
+}
+
+.project-card-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+.project-card-excerpt {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.project-card-footer {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed var(--border-light);
+  padding-top: 0.75rem;
+}
+
+.project-action-link {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.project-card:hover .project-action-link {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   FOOTER (Matches Wireframe Bottom Links: [CONTACT] [ABOUT ME])
+   ========================================================================== */
+.site-footer {
+  margin-top: auto;
+  border-top: 2px solid var(--border-color);
+  background-color: #061c36;
+  padding: 3rem 0 2rem;
+}
+
+.footer-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1.5px dashed var(--border-light);
+}
+
+/* Wireframe "[ CONTACT ]" and "[ ABOUT ME ]" Buttons */
+.wireframe-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2.25rem;
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #0b2e59;
+  border: 2.5px solid var(--border-color);
+  box-shadow: var(--shadow-sketch);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  min-width: 190px;
+}
+
+.wireframe-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-sketch-hover);
+  background-color: var(--accent);
+  color: var(--bg-dark);
+}
+
+.wireframe-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.footer-bottom-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.footer-sketch-link {
+  color: var(--accent);
+  font-weight: 700;
+  border-bottom: 1px dashed var(--accent);
+}
+
+.footer-sketch-link:hover {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+/* ==========================================================================
+   PROJECTS PAGE STYLES (projects.html)
+   ========================================================================== */
+.page-intro {
+  padding: 3.5rem 0 2rem;
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+.page-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Category Filter Tabs */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0 3rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.2rem;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 2px solid var(--border-color);
+  background-color: #0b2e59;
+  color: #ffffff;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sketch);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background-color: var(--accent);
+  color: var(--bg-dark);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-sketch-hover);
+}
+
+/* ==========================================================================
+   ABOUT PAGE STYLES (about.html)
+   ========================================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 3.5rem;
+  align-items: flex-start;
+  padding: 3.5rem 0 4.5rem;
+}
+
+.about-photo-col {
+  position: sticky;
+  top: 6rem;
+}
+
+.about-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-heading {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.about-lead {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.45;
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+}
+
+.about-body-text {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.disciplines-block {
+  margin-top: 1rem;
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-sketch);
+  border-radius: var(--radius-sm);
+  padding: 1.75rem;
+}
+
+.disciplines-title {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid var(--border-light);
+  padding-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.discipline-item {
+  margin-bottom: 1.25rem;
+}
+
+.discipline-item:last-child {
+  margin-bottom: 0;
+}
+
+.discipline-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.discipline-name span {
+  color: var(--accent);
+}
+
+.discipline-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Skills & Tools Grid */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.tool-chip {
+  background-color: var(--bg-subtle);
+  border: 1.5px solid var(--border-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   CONTACT PAGE STYLES (contact.html)
+   ========================================================================== */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  padding: 3.5rem 0 5rem;
+}
+
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-card-box {
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-sketch);
+  border-radius: var(--radius-sm);
+  padding: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+}
+
+.contact-item-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.contact-item-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+  font-weight: 700;
+}
+
+.contact-item-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.form-input, .form-textarea, .form-select {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: #071f3d;
+  color: #ffffff;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 3px 3px 0px var(--accent);
+}
+
+.form-textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.btn-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg-dark);
+  background-color: var(--accent);
+  border: 2.5px solid var(--border-color);
+  box-shadow: var(--shadow-sketch);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: 0.5rem;
+}
+
+.btn-submit:hover {
+  background-color: #ffffff;
+  color: var(--bg-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-sketch-hover);
+}
+
+.form-feedback {
+  display: none;
+  padding: 1rem;
+  background-color: rgba(56, 189, 248, 0.15);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.form-feedback.show {
+  display: block;
+}
+
+/* ==========================================================================
+   MODAL COMPONENT (For Project Details & Wireframe Viewer)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(5, 24, 48, 0.85);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-container {
+  background-color: #082447;
+  border: 3px solid var(--border-color);
+  box-shadow: 10px 10px 0px rgba(3, 14, 28, 0.95);
+  border-radius: var(--radius-md);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.25s ease;
+}
+
+.modal-overlay.active .modal-container {
+  transform: scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #0b2e59;
+  border: 2px solid var(--border-color);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background-color: var(--accent);
+  color: var(--bg-dark);
+  transform: scale(1.05);
+}
+
+.modal-content {
+  padding: 2rem 2.5rem;
+}
+
+.modal-hero-art {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  background-color: #071f3a;
+}
+
+.modal-project-embed {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background-color: #ffffff;
+}
+
+.modal-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.modal-category-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.modal-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  background-color: var(--bg-subtle);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.modal-meta-item strong {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.modal-meta-item span {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.modal-body-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .hero-portrait-wrapper {
+    order: -1;
+  }
+  
+  .portrait-frame {
+    max-width: 300px;
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-photo-col {
+    position: static;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-container {
+    padding: 0 1.25rem;
+  }
+  
+  .site-header .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .header-nav {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .search-wrapper {
+    width: 100%;
+    min-width: 100%;
+  }
+  
+  .footer-action-bar {
+    flex-direction: column;
+  }
+  
+  .wireframe-btn {
+    width: 100%;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+  }
+}
